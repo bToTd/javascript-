@@ -7,6 +7,8 @@ JavaScript一些练习题的代码，还有会收集一些经典别人写的特�
 
 ### 第一章 JavaScript 的值，类型，和运算符
 
+JavaScript 定义或者声明变量时，不管是什么类型的变量，都是要 var 这个关键字。
+
 JavaScript的类型：
 
 * 数字：数字包括了整数和浮点数，其中有三个特殊的值，Infinity表示无穷大，-Infinity表示负无穷大，NaN表示“非数值”
