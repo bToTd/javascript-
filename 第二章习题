@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>javascript 2.20</title>
+    <script type="text/javascript">
+        window.onload = function(){
+
+            /* 完成一个函数，给一个参数 n
+                打印三角形
+             */
+             function printTriangle(height){
+                 var str = "#";
+                 for(var i = 0; i < height; i++){
+                     console.log(str);
+                     str += '#';
+                 };
+             };
+
+            /* 完成一个函数，从 1 到 n
+                1. 如果这个数能被3整除，不能被5整除这输出 Fizz
+                2. 如果这个数能被5整除，不能被3整除则输出 Buzz
+                3. 如果这个数能被3和5整除，则输出 FizzBuzz
+                4. 如果都不能整除，则输出这个数字
+             */
+            function printFizzBuzz(num){
+                for(var i = 1; i <= num; i++){
+                    if(i % 3 == 0 && i % 5 != 0){
+                        console.log("Fizz");
+                    }else if(i % 5 == 0 && i % 3 != 0){
+                        console.log("Buzz");
+                    }else if(i % 3 == 0 && i % 5 == 0){
+                        console.log("FizzBuzz");
+                    }else{
+                        console.log("num = " + i);
+                    }
+                };
+            };
+
+            /* 完成一个函数，打印一个类似国际象棋的棋盘
+                # 表示黑，空格表示白，使用换行符分割换行，
+                也就是说函数中应该只有一个console.log函数
+             */
+             function printBoard(size){
+                var str = "";
+                var flag = true;
+                for(var i = 0; i < size; i++){
+
+                    for(var j = 0; j < size; j++){
+                        if(flag){
+                            str += "#";
+                            flag = !flag;
+                        }else{
+                            str += " ";
+                            flag = !flag;
+                        }
+                    };
+                    str += "\n";
+                    if(size % 2 == 0){
+                        flag = !flag;
+                    }
+                };
+                console.log(str);
+               
+             };
+            
+            var btn1 = document.getElementById("2.20.1");
+            btn1.onclick = function(){
+                printTriangle(7);
+            };
+
+            var btn2 = document.getElementById("2.20.2");
+            btn2.onclick = function(){
+                printFizzBuzz(100);
+            };
+
+            var btn3 = document.getElementById("2.20.3");
+            btn3.onclick = function(){
+                printBoard(9);
+            };
+        };
+    </script>
+</head>
+<body>
+    <button id="2.20.1" title="打印三角形">2.20.1</button>
+    <button id="2.20.2" title="打印数字">2.20.2</button>
+    <button id="2.20.3" title="打印棋盘">2.20.3</button>
+</html>
