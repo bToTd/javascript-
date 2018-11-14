@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>function</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            // 返回两个数中的较小的一个
+            function min(a, b){
+                return a > b ? b:a;
+            };
+
+            var btn1 = document.getElementById("3.13.1");
+            btn1.onclick = function(){
+                var res = min(5,3);
+                console.log(res);
+            };
+        };
+    </script>
+</head>
+<body>
+    <button id="3.13.1">最小值</button>
+</body>
+</html>

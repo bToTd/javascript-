@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sort</title>
+    <script type="text/javascript">
+        //排序算法
+        var arr = [2, 5, 6, 1, 8, 10];
+        arr.heapSize = arr.length;
+        function swap(arr, index, nextIndex) {
+            var tmp = arr[index];
+            arr[index] = arr[nextIndex];
+            arr[nextIndex] = tmp;
+        };
+
+        // 选择排序
+        function selectionSort(arr){
+            for (var i = 0; i < arr.length; i++){
+                var minIndex = i;
+                for(var j = i + 1; j < arr.length; j++){
+                    if(arr[minIndex] > arr[j]){
+                        minIndex = j;
+                    }
+                };
+                swap(arr, i, minIndex);
+            }
+        };
+
+        // 插入排序
+        function insertion_sort(arr){
+            for (var i = 0; i < arr.length - 1; i++) {
+                for (var j = i + 1; j > 0; j--) {
+                    if (arr[j] < arr[j - 1])
+                        swap(arr, j, j - 1); // 大量的交换会消耗时间
+                    else
+                        break;
+                }
+            }
+        };
+
+        // 冒泡排序
+        function bubble_sort(arr){
+            for(var i = arr.length - 1; i > 0; i--){
+                var swapped = false;
+                for(var j = 0; j < i; j++){
+                    if(arr[j] > arr[j+1]) {
+                        swapped = true;
+                        swap(arr, j, j+1);
+                    };
+                };
+            };
+            if(!swapped){
+                return;
+            }
+        };
+
+        // 归并排序
+        // 将数组分组
+        function merge(arr, left, mid, right){
+            var sub_arr = arr.slice(left, right+1);
+            var i = left;
+            var j = mid + 1;
+            for(var k = left; k <= right; k++){
+                if(i > mid){
+                    arr[k] = sub_arr[j - left];
+                    j++;
+                }else if(j > right){
+                    arr[k] = sub_arr[i - left];
+                    i++;
+                }else if(sub_arr[i - left] < sub_arr[j - left]){
+                    arr[k] = sub_arr[i - left];
+                    i++;
+                }else {
+                    arr[k] = sub_arr[j - left];
+                    j++;
+                }
+            }
+        };
+        // 排序
+        function merge_sort(arr, left, right) {
+            if(left >= right)
+                return;
+            var mid = parseInt((left + right) / 2);
+            merge_sort(arr, left, mid);
+            merge_sort(arr, mid + 1, right);
+            merge(arr, left, mid, right);
+        };
+
+        // 快速排序
+        // 划分
+        function partition(arr, left, right){
+            var value = arr[right];
+            var index = left - 1;
+            for(var j = left; j < right; j++){
+                if(arr[j] <= value){
+                    index++;
+                    swap(arr, index, j);
+                }
+            };
+            swap(arr, index+1, right);
+            return index+1;
+        };
+        // 排列
+        function quick_sort(arr, left, right){
+            if(left < right){
+                var index = partition(arr, left, right);
+                quick_sort(arr, left, index-1);
+                quick_sort(arr, index+1, right);
+            }
+        };
+
+        // 堆排序
+        function getParentNodeIndex(index){
+            return parseInt(index/2);
+        };
+
+        function getLeftChildIndex(index){
+            return 2 * index + 1;
+        };
+
+        function getRightChildIndex(index){
+            return 2 * index + 2;
+        };
+
+        // 维护堆
+        function maxHeapify(arr, index){
+            var Left = getLeftChildIndex(index);
+            var Right = getRightChildIndex(index);
+            var largest;
+
+            if(Left < arr.heapSize && arr[Left] > arr[index]){
+                largest = Left;
+            }else {
+                largest = index;
+            }
+
+            if(Right < arr.heapSize && arr[Right] > arr[largest]){
+                largest = Right;
+            }
+
+            if(largest != index){
+                swap(arr, index, largest);
+
+                maxHeapify(arr, largest);
+            }
+        }
+        // 建最大堆
+        function buildMaxHeap(arr){
+            for(var i = parseInt((arr.length - 1) / 2); i >= 0; i--){
+                maxHeapify(arr, i);
+            }
+        }
+        // 堆排序开始
+        function heap_sort(arr){
+            buildMaxHeap(arr);
+            console.log("最大堆为 " + arr);
+            for(var i = arr.length - 1; i >= 1; i--){
+                swap(arr, 0, i);
+                arr.heapSize--;
+                console.log(arr.heapSize);
+                maxHeapify(arr, 0);
+            }
+        }
+
+        console.log("arr = " + arr);
+
+        //selectionSort(arr);
+        //insertion_sort(arr);
+        //bubble_sort(arr);
+        // var arr2 = arr.slice(1, 3);
+        //
+        // console.log(arr[1] === arr2[0]);
+        // merge_sort(arr, 0, arr.length - 1);
+        // quick_sort(arr, 0, arr.length);
+        heap_sort(arr);
+
+        console.log("arr = " + arr);
+        // console.log("arr2 = " + arr2);
+    </script>
+</head>
+<body>
+    <div class="box1">
+
+    </div>
+
+</body>
+</html>
