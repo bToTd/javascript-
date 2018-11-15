@@ -12,15 +12,66 @@
                 return a > b ? b:a;
             };
 
+            // 用递归来判断任何数字 N 的奇偶性和 N-2相同
+            function isEven(num){
+                if(num < 0){
+                    console.log("请输入正数");
+                    return;
+                }
+                if(num == 0){
+                    console.log("这是偶数");
+                    return;
+                }
+                if(num == 1){
+                    console.log("这是奇数");
+                    return;
+                }
+                return isEven(num - 2);
+            };
+
+            // 写一个函数，统计给定字符串中的某个字符的个数，并返回这个数
+            function countChar(str, char){
+                var count = 0;
+                for(var i = 0; i < str.length; i++){
+                    if(str.charAt(i) == char){
+                        count++;
+                    }
+                };
+
+                return count;
+            };
+
             var btn1 = document.getElementById("3.13.1");
             btn1.onclick = function(){
                 var res = min(5,3);
                 console.log(res);
+            };
+
+            var btn2 = document.getElementById("3.13.2");
+            btn2.onclick = function(){
+                isEven(520);
+            };
+
+            var btn3 = document.getElementById("3.13.3");
+            btn3.onclick = function(){
+                var str = document.getElementById("str");
+
+                var char = document.getElementById("char");
+
+                var res = document.getElementById("res");
+
+                res.value = char.value + ":" + countChar(str.value, char.value);
+                console.log(res.value);
             };
         };
     </script>
 </head>
 <body>
     <button id="3.13.1">最小值</button>
+    <button id="3.13.2">判断奇数还是偶数</button>
+    <button id="3.13.3">计算字符串中的某个字符的数量</button>
+    <input type="text" id="str" value="">
+    <input type="text" id="char" value="">
+    <input type="text" id="res" value="">
 </body>
 </html>
