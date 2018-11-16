@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>逆转数组</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            /*
+                逆转数组函数，返回一个新的数组
+                参数： 数组
+             */
+            function reverseArray(arr){
+                var newArr = [];
+                for(var i = 0; i < arr.length; i++){
+                    newArr[i] = arr[arr.length - 1 -i];
+                }
+                return newArr;
+            };
+
+            // 交换数组中的两个元素
+            function swap(arr, index, other){
+                var tem = arr[index];
+                arr[index] = arr[other];
+                arr[other] = tem;
+            }
+
+            /*
+                直接在原来的数组上逆转，不返回新的数组
+             */
+            function reverseArrayInPlace(arr){
+                var len = parseInt(arr.length / 2);
+                for(var i = 0; i < len; i++){
+                    swap(arr, i, arr.length - 1 - i);
+                }
+            };
+
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function(){
+                var arr = [1, 2, 3, 4];
+                var res = reverseArray(arr);
+                console.log("arr = " + arr);
+                console.log("res = " + res);
+            }
+
+            var btn02 = document.getElementById("btn02");
+            btn02.onclick = function(){
+                var arr = [1, 2, 3, 4];
+                console.log("逆转前" + arr);
+                reverseArrayInPlace(arr);
+                console.log("arr = " + arr);
+            }
+        };
+    </script>
+</head>
+<body>
+    <button id="btn01">返回新数组</button>
+    <button id="btn02">没有返回数组</button>
+</body>
+</html>

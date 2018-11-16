@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>range and sum</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            /* range 函数生成一个数组
+                参数：
+                    start 数组开始的数值
+                    end   数组结束 不包括在数组中
+                    step  步长
+             */
+            function range(start, end, step){
+                var arr = [];
+                if(step == null){
+                    step = 1;
+                }
+                var k = 0;
+                if(step > 0 && (end - start) > 0){
+                    for(var i = start; i < end; i+=step){
+                        arr[k] = i;
+                        k++;
+                    }
+                }
+                else if(step < 0 && (end - start) < 0){
+                    for(var i = start; i > end; i+=step){
+                        arr[k] = i;
+                        k++;
+                    }
+                }
+                else{
+                    console.log("请检查range函数的参数")
+                    return;
+                }
+                
+                return arr;
+            };
+
+            // 求和函数，给定一个数组，返回数组中的元素的和
+            function sum(arr){
+                var s = 0;
+                for(var i = 0; i < arr.length; i++){
+                    s += arr[i];
+                }
+                return s;
+            };
+
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function(){
+                var res = range(1, 10);
+                console.log(res);
+                res = range(10, 1, 1);
+                console.log(res);
+                console.log(sum(res));
+            };
+        };
+    </script>
+</head>
+<body>
+    <button id="btn01">产生数组</button>
+    <button id="btn2">求和</button>
+</body>
+</html>
