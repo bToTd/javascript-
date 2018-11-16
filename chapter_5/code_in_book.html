@@ -7,11 +7,39 @@
     <title>书上的代码</title>
     <script type="text/javascript">
         window.onload = function(){
-            
+            function repeat(arg, action){
+                for(var i = 0; i < arg.length; i++){
+                    action(arg[i]);
+                };
+            };
+
+            function greaterThan(n){
+                return m => m > n;
+            }
+
+            function noisy(fun){
+                return function(...args){
+                    console.log("calling with", args);
+                    var result = fun(...args);
+                    console.log("called with", args, ", returned", result);
+                    return result;
+                };
+            };
+
+            var btn01 = document.getElementById("btn01");
+            btn01.onclick = function(){
+                var arr = [1, 2, 3];
+                repeat(arr, console.log);
+
+                var greaterThan10 = greaterThan(10);
+                console.log(greaterThan10(1));
+
+                noisy(Math.min)(3, 2, 1);
+            };
         };
     </script>
 </head>
 <body>
-    
+    <button id="btn01">测试</button>
 </body>
 </html>
